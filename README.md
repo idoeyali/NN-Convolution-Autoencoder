@@ -6,7 +6,7 @@ This project implements a deep learning pipeline using PyTorch for the **MNIST**
 * Autoencoder: Combination of the Encoder and Decoder for unsupervised learning to reconstruct input images.
 * Classifier: CNN that uses the pre-trained Encoder for feature extraction and a multi-layer perceptron (MLP) for digit classification.
 * ClassifierDecoding: Network combining a pre-trained encoder and a decoder for fine-tuning with a reconstruction-based approach.
-# Key Features
+## Key Features
 * **Autoencoder**: Trained to minimize reconstruction loss, demonstrating effective compression and reconstruction of MNIST digits.
 
   First defining Encoder class:
@@ -56,6 +56,30 @@ class Decoder(nn.Module):
         return x
 ```
 The decoder architecture effectively reconstructs the input image by progressively upsampling the latent representation.
+
+After defining encoder and decoder we can build an autoencoder, split the data into batches and train the model over the training data:
+```python
+criterion = nn.MSELoss()  # Change to MSE loss for reconstruction
+optimizer = optim.Adam(autoencoder.parameters(), lr=0.001)  # Decrease learning rate
+
+num_epochs = 10
+epochs_loss = []
+
+for epoch in range(num_epochs):
+    autoencoder.train()
+    train_loss = 0
+    for batch_idx, (data, _) in enumerate(train_loader):
+        optimizer.zero_grad()
+        reconstructions = autoencoder(data)
+        loss = criterion(reconstructions, data)
+        loss.backward()
+        optimizer.step()
+        train_loss += loss.item()
+
+    epoch_loss = train_loss / len(train_loader)
+    epochs_loss.append(epoch_loss)
+    print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {epoch_loss:.4f}')
+```
 
 * **Classifier**: Trained to predict digit classes using cross-entropy loss, incorporating transfer learning for improved performance with limited labeled data.
 * **Fine-tuning**: Demonstrates the use of pre-trained encoders for improved classification accuracy with a small labeled dataset.
