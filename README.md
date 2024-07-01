@@ -13,6 +13,16 @@ This project implements a deep learning pipeline using PyTorch for the **MNIST**
 * **Visualization**: Plots training and test losses, accuracies, and reconstructed images to evaluate model performance.
 
 ## Results
-* The autoencoder achieves high reconstruction accuracy, as demonstrated by the plotted loss curves:
-  
-The classifier shows improved performance when fine-tuned with a pre-trained encoder, even with a limited labeled dataset.
+* The **Autoencoder** achieves high reconstruction accuracy, as demonstrated by the plotted some original images and the reconsructed images:
+  ![MNIST Sample](result/autoencoder_reconstruction.png)
+* The training and test errors and accuracies of the **Classifier** over 10 epochs:
+  ![MNIST Sample](result/classifier_score.png)
+* Useing small set to train the classifier network (only 100 sample), we can obtain that the classifier achieves low scores:
+  ![MNIST Sample](result/small_data_score.png)
+  Then, when fine-tuned with a pre-trained encoder, the **Classifier** shows improved performance, even with a limited labeled dataset:
+  ![MNIST Sample](result/small_data_fine_tunning.png)
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any features, bug fixes, or improvements.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
