@@ -11,4 +11,8 @@ This project implements a deep learning pipeline using PyTorch for the **MNIST**
 * **Classifier**: Trained to predict digit classes using cross-entropy loss, incorporating transfer learning for improved performance with limited labeled data.
 * **Fine-tuning**: Demonstrates the use of pre-trained encoders for improved classification accuracy with a small labeled dataset.
 * **Visualization**: Plots training and test losses, accuracies, and reconstructed images to evaluate model performance.
-* 
+
+## Results
+* The autoencoder achieves high reconstruction accuracy, as demonstrated by the plotted loss curves:
+  
+The classifier shows improved performance when fine-tuned with a pre-trained encoder, even with a limited labeled dataset.
