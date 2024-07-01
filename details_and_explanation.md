@@ -84,3 +84,8 @@ class Classifier(nn.Module):
         x = self.fc2(x)
         return x
 ```
+## More Observations
+* **The autoencoder encoder vs. the classifier encoder:**  
+The two encoders have different training incentives -  The autoencoder encoder is trained specifically to minimize the reconstruction loss, which means it learns to extract features that are most helpful for reconstructing the input data. 
+That’s why the autoencoder encoder produces embeddings that capture the overall structure of the input data, focusing on reconstruction fidelity. 
+On the other hand, the classifier encoder is trained to optimize classification accuracy, which means it learns features that are most helpful for distinguishing between different classes. That’s why the classifier encoder produces embeddings that are optimized for separating different classes, potentially losing some reconstruction fidelity in the process.
